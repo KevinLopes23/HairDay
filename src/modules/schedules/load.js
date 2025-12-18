@@ -3,7 +3,7 @@ import { hoursLoad } from "../form/hours-load";
 //Seleciona o input de data
 const selectedDate = document.getElementById("date");
 
-export function scheculesDay() {
+export function schedulesDay() {
   //Obtem a data selecionada pelo usuário
   const date = selectedDate.value;
 
