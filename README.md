@@ -122,4 +122,8 @@ Saída em `dist/` com `index.html`, `main.js` e assets copiados.
 - Estados visuais para disponibilidade e seleção de horário.
 - Confirmação antes de ações destrutivas (cancelar).
 
+## 🌐 Hospedagem
 
+- Front-end publicado via GitHub Pages (branch `gh-pages`).
+- API `json-server` hospedada no Render: `https://hairday-svxv.onrender.com`.
+- Serviços gratuitos podem hibernar ou ter latência. A primeira requisição pode demorar alguns segundos; instabilidades podem ocorrer.
