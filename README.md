@@ -1,129 +1,52 @@
+<div align="center">
+
 # ✂️ HairDay
 
-Aplicação web para agendamento de cortes de cabelo. Permite selecionar uma data, escolher um horário disponível, cadastrar o nome do cliente, visualizar os agendamentos por período (manhã/tarde/noite) e cancelar agendamentos com confirmação. Interface responsiva, leve e focada em usabilidade.
+**Agendamento de cortes de cabelo com horários disponíveis em tempo real**
 
-## � Capturas de tela
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![Webpack](https://img.shields.io/badge/Webpack-8DD6F9?style=for-the-badge&logo=webpack&logoColor=black)
+![Babel](https://img.shields.io/badge/Babel-F9DC3E?style=for-the-badge&logo=babel&logoColor=black)
+[![Ver online](https://img.shields.io/badge/Ver_online-222?style=for-the-badge&logo=githubpages&logoColor=white)](https://kevinlopes23.github.io/HairDay/)
 
-<p align="center">
-  <img src="./foto_desk.png" alt="HairDay no desktop" width="85%" />
-</p>
-<p align="center">
-  <img src="./foto_mobile1.png" alt="HairDay no mobile" width="35%" />
-</p>
+<br>
 
-## �🚀 Funcionalidades
+<img src="docs/preview.webp" alt="Tela do HairDay" width="74%">&nbsp;
+<img src="docs/preview-mobile.webp" alt="Tela do HairDay no celular" width="20%">
 
-- Seleção de data com bloqueio de datas passadas
-- Lista de horários disponíveis em tempo real
-- Criação de agendamentos com feedback de sucesso
-- Visualização dos agendamentos por períodos (manhã, tarde, noite)
-- Cancelamento de agendamentos com confirmação
-- Persistência via API fake (`json-server`)
-- Layout responsivo e estilização moderna
+</div>
 
-## 🧠 Como funciona
+## 💡 Sobre
 
-- Disponibilidade de horários é calculada com base nos agendamentos existentes e na data selecionada (`src/modules/form/hours-load.js`).
-- Os agendamentos do dia são buscados da API e renderizados em seções de período (`src/modules/schedules/load.js`, `src/modules/schedules/show.js`).
-- A criação e o cancelamento chamam a API com `POST` e `DELETE` respectivamente (`src/services/schedule-new.js`, `src/services/schedule-cancel.js`).
-- Datas e horários são manipulados com `dayjs` já configurado para `pt-br` (`src/libs/dayjs.js`).
+Aplicação web para barbearias e salões: o cliente escolhe a data, um horário livre e informa o nome. Os agendamentos do dia aparecem separados por período e podem ser cancelados. O front-end é empacotado com Webpack e consome uma API REST (JSON Server).
 
-## 🛠️ Stack
+## ✨ Funcionalidades
 
-- Front-end: HTML5, CSS3, JavaScript (ES6+), Day.js
-- Build: Webpack, Babel
-- API fake: JSON Server
+- Seleção de data com bloqueio de dias passados
+- Horários disponíveis calculados a partir dos agendamentos existentes
+- Agendamentos agrupados em manhã, tarde e noite
+- Cancelamento com confirmação
+- Datas e horas com Day.js em pt-BR
+- Layout responsivo
 
-## 📦 Instalação
+## 🛠️ Tecnologias
+
+HTML5 · CSS3 · JavaScript (ES6+, módulos) · Day.js · Webpack · Babel · JSON Server
+
+## 🚀 Como rodar
 
 ```bash
+git clone https://github.com/KevinLopes23/HairDay.git
+cd HairDay
 npm install
+npm run server   # API fake na porta 3333
+npm run dev      # front-end em http://localhost:3000
 ```
 
-## ▶️ Executando
+> A versão online usa uma API hospedada no Render (`src/services/api-config.js`); no plano gratuito, a primeira requisição pode demorar alguns segundos.
 
-Em dois terminais separados:
+## 👤 Autor
 
-1. API (porta `3333`):
-
-```bash
-npm run server
-```
-
-2. Front-end (porta `3000` com live-reload):
-
-```bash
-npm run dev
-```
-
-A aplicação abrirá em `http://localhost:3000`. A API responde em `http://localhost:3333`.
-
-## 🧪 Endpoints da API
-
-- `GET /schedules` — lista todos os agendamentos
-- `POST /schedules` — cria um agendamento
-  - body: `{ id: string, name: string, when: string | Date }`
-- `DELETE /schedules/:id` — cancela um agendamento
-
-Fonte de dados: `server.json`.
-
-## 🖥️ Uso
-
-- Selecione a data no campo de calendário.
-- Escolha um horário disponível (pastas e horários ocupados ficam indisponíveis).
-- Informe o nome do cliente.
-- Clique em `Agendar`. O agendamento aparecerá na lista do período correspondente.
-- Para cancelar, clique no ícone de lixeira e confirme.
-
-## 🗂️ Estrutura do projeto
-
-```
-HairDay/
-├─ index.html
-├─ server.json
-├─ webpack.config.js
-├─ package.json
-├─ src/
-│  ├─ assets/            # Ícones e imagens (SVG)
-│  ├─ libs/dayjs.js      # Localização pt-br
-│  ├─ modules/
-│  │  ├─ page-load.js
-│  │  ├─ form/
-│  │  │  ├─ submit.js
-│  │  │  ├─ date-change.js
-│  │  │  ├─ hours-click.js
-│  │  │  └─ hours-load.js
-│  │  └─ schedules/
-│  │     ├─ load.js
-│  │     ├─ show.js
-│  │     └─ cancel.js
-│  ├─ services/
-│  │  ├─ api-config.js
-│  │  ├─ schedule-new.js
-│  │  ├─ schedule-cancel.js
-│  │  └─ schedule-fetch-by-day.js
-│  ├─ styles/            # CSS global e páginas
-│  ├─ utils/opening-hours.js
-│  └─ main.js            # Entry do Webpack
-└─ dist/                 # Build de produção
-```
-
-## 🧰 Build de produção
-
-```bash
-npm run build
-```
-
-Saída em `dist/` com `index.html`, `main.js` e assets copiados.
-
-## ✅ Detalhes de UX
-
-- Ícones e textos com `alt` e `aria-label` adequados.
-- Estados visuais para disponibilidade e seleção de horário.
-- Confirmação antes de ações destrutivas (cancelar).
-
-## 🌐 Hospedagem
-
-- Front-end publicado via GitHub Pages (branch `gh-pages`).
-- API `json-server` hospedada no Render: `https://hairday-svxv.onrender.com`.
-- Serviços gratuitos podem hibernar ou ter latência. A primeira requisição pode demorar alguns segundos; instabilidades podem ocorrer.
+Feito por [Kevin Lopes](https://github.com/KevinLopes23)
